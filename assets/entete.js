@@ -98,7 +98,8 @@ const PRATIQUES = {
 const PIED_DE_PAGE = [
   { texte: "À propos",  lien: "#" },
   { texte: "Contact",   lien: "#" },
-  { texte: "Instagram", lien: "#" }
+  { texte: "Instagram", lien: "#" },
+  { texte: "Mentions légales et confidentialité", lien: "mentions-legales.html" }
 ];
 const MENTION_CARTES = "Fonds de carte © Esri, contributeurs OpenStreetMap, OpenTopoMap";
 
@@ -271,6 +272,27 @@ function propre(v) {
   if (Array.isArray(v)) return v.map(propre).filter(Boolean);
   if (v == null) return "";
   return String(v).replace(/\s*\[\s*à compléter\s*\][\s\S]*$/i, "").replace(/^\s*à compléter\s*\.?\s*$/i, "").trim();
+}
+
+// decrire(texte) : remplace la description de la page (texte sous le titre dans
+// Google) par le début du texte donné, coupé proprement vers 155 caractères.
+function decrire(texte) {
+  const t = propre(texte).replace(/\s+/g, " ").trim();
+  if (!t) return;
+  const court = t.length <= 155 ? t : t.slice(0, 152).replace(/\s+\S*$/, "") + "...";
+  let m = document.querySelector('meta[name="description"]');
+  if (!m) { m = document.createElement("meta"); m.name = "description"; document.head.appendChild(m); }
+  m.content = court;
+}
+
+// altPhoto(P, fichier, numero) : texte de remplacement d'une photo (lu par les
+// lecteurs d'écran et par Google, affiché si l'image ne charge pas) :
+// la légende de la photo si elle existe, sinon « Photo du parcours <nom> ».
+function altPhoto(P, fichier, numero) {
+  const ph = (P.photos || []).find(x => x.fichier === fichier) || {};
+  const nom = `${P.nom || ""}${P.nom_gras ? " " + P.nom_gras : ""}`.trim();
+  const t = propre(ph.legende) || `Photo du parcours ${nom}${numero ? " (" + numero + ")" : ""}`;
+  return t.replace(/"/g, "&quot;");
 }
 
 // joursDe(P) : nombre de jours d'une fiche (1 si le champ "jours" est absent)

@@ -13,6 +13,8 @@ index.html            Page d'accueil (structure : bandeau, carte, rubriques)
 parcours.html         Modèle de page commun à TOUS les parcours
 categorie.html        Page d'une catégorie : categorie.html?c=nord (Traces du Nord) ou ?c=france
 nord.html             Ancienne adresse des Traces du Nord : renvoie vers categorie.html?c=nord
+mentions-legales.html Mentions légales et confidentialité (texte modifiable directement)
+404.html              Page affichée par GitHub quand une adresse n'existe pas
 README.md             Ce mode d'emploi
 
 assets/               "Moteur" et apparence du site
@@ -20,6 +22,9 @@ assets/               "Moteur" et apparence du site
   entete.js           Nom du site, menu, outils communs (fond de carte...)
   accueil.js          Construit la page d'accueil
   categorie.js        Construit la page d'une catégorie (carte, filtres, vignettes)
+  polices/            Polices du site (hébergées ici, pas chez Google)
+  favicon.svg, favicon-32.png, apple-touch-icon.png   Icône de l'onglet et du téléphone
+  partage.jpg         Image d'aperçu quand un lien du site est partagé (1200 x 630 px)
   parcours.js         Construit la page d'un parcours
   leaflet/            Bibliothèque de cartes (ne pas modifier)
 

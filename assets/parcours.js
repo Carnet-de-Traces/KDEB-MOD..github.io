@@ -92,16 +92,34 @@ const fmt = n => n == null ? "-" : Number(n).toLocaleString("fr-FR");
 // ---------------------------------------------------------------------
 
 // Nom du parcours lu dans l'adresse (?p=...). Sans "?p=", on affiche le Flandrien.
-const slug = new URLSearchParams(location.search).get("p") || "flandrien-challenge";
-// Charge textes + trace (fonction définie dans entete.js), puis construit la page.
-// En cas de problème, un message rouge explique quoi corriger.
+const slug = new URLSearchParams(location.search).get("p");
+// Sans nom de parcours dans l'adresse : retour à l'accueil.
+if (!slug) location.replace("index.html");
+// 1) Les deux listes disent si la trace existe et à quelle catégorie elle appartient.
+// 2) Si elle existe : textes + trace (fonction définie dans entete.js), puis la page.
+//    En cas de problème dans un fichier, un message rouge explique quoi corriger.
+// 3) Si elle n'est dans aucune liste (adresse mal tapée, trace retirée) :
+//    message simple pour le visiteur, avec des liens vers les catégories.
 // data/pois/etat.js (écrit par le robot POI) dit si les points d'intérêt sont prêts.
-// Les deux listes disent à quelle catégorie appartient la trace (Nord ou ailleurs en France).
-Promise.all([chargerParcours(slug), chargerScript("data/pois/etat.js"), chargerListes()]).then(([P, , listes]) => {
+Promise.all([chargerListes(), chargerScript("data/pois/etat.js")]).then(async ([listes]) => {
+  const connue = slug && CATEGORIES.some(c => (listes[c.id] || []).includes(slug));
+  const P = connue ? await chargerParcours(slug) : null;
   if (P) { P.categorie = categorieDe(slug, listes); construire(P); }
+  else if (!connue) introuvable();
   else $("titre").textContent = "Parcours introuvable";
   afficherErreurs();
 });
+
+// Page « trace introuvable » : courbes de niveau, message et liens vers les catégories
+function introuvable() {
+  document.title = "Trace introuvable - " + NOM_DU_SITE;
+  $("fond").innerHTML = courbesDeNiveau();
+  $("titre").textContent = "Trace introuvable";
+  $("chapeau").innerHTML = `Cette trace n'existe pas ou a changé d'adresse. Toutes les traces sont rangées ici :
+    ${CATEGORIES.map(c => `<a href="${lienCategorie(c.id)}">${c.nom}</a>`).join(" · ")}.`;
+  document.querySelector(".stats").hidden = true;
+  document.querySelector("main").hidden = true;
+}
 
 
 // ---------------------------------------------------------------------
@@ -111,10 +129,11 @@ function construire(P) {
   P.pois = (P.pois || []).sort((a, b) => a.km - b.km);       // points d'intérêt triés par km
   const altMax = Math.max(...P.trace.map(p => p[2]));         // altitude la plus haute
   document.title = `${P.nom} ${P.nom_gras || ""} - ${NOM_DU_SITE}`; // titre de l'onglet
+  decrire(P.chapeau);                                                  // description pour Google
 
   // --- Bandeau du haut : photo principale (ou courbes de niveau), étiquettes, titre, résumé ---
   $("fond").innerHTML = P.photo_principale
-    ? `<img src="photos/${P.slug}/${P.photo_principale}" alt="">`
+    ? `<img src="photos/${P.slug}/${P.photo_principale}" alt="${altPhoto(P, P.photo_principale)}">`
     : courbesDeNiveau();
   const cat = `${P.categorie.nom} · ${etiquetteFiche(P)}`;   // ex. « Traces du Nord · VTT · À la journée »
   $("lieu").innerHTML = (cat ? `<span class="cat">${cat}</span>` : "") + (P.lieu || []).map(l => `<span>${l}</span>`).join("");
@@ -217,7 +236,7 @@ function construire(P) {
   const gal = $("galerie");
   if (!(P.photos || []).length) masquer("photos-titre", "galerie");
   gal.dataset.n = Math.min((P.photos || []).length, 6);   // disposition de la mosaïque (voir style.css, section 15)
-  gal.innerHTML = (P.photos || []).map(ph => `<figure><img src="photos/${P.slug}/${ph.fichier}" alt="${ph.legende || ""}" loading="lazy"><figcaption>${ph.legende || ""}</figcaption></figure>`).join("");
+  gal.innerHTML = (P.photos || []).map((ph, i) => `<figure><img src="photos/${P.slug}/${ph.fichier}" alt="${altPhoto(P, ph.fichier, i + 1)}" loading="lazy"><figcaption>${ph.legende || ""}</figcaption></figure>`).join("");
   visionneuse(P);
 
   // --- Lien de retour vers la catégorie de la trace (page carte, sinon rubrique de l'accueil) ---
@@ -374,6 +393,10 @@ function carteProfilFeuille(P) {
   // "Trace GPX" : le fichier gpx/<nom>.gpx tel quel.
   $("gpx").href = "gpx/" + P.slug + ".gpx";
   $("gpx").setAttribute("download", P.slug + ".gpx");
+  // Même lien dans le bandeau du haut : l'action principale de la page
+  $("gpx-haut").href = $("gpx").href;
+  $("gpx-haut").setAttribute("download", P.slug + ".gpx");
+  $("actions-hero").hidden = false;
   // "GPX avec points d'intérêt" : fabriqué à la volée dans le navigateur
   // (trace + points d'intérêt de la fiche, lisibles par un GPS ou Komoot).
   $("gpx-poi").onclick = () => {
@@ -408,7 +431,7 @@ function visionneuse(P) {
     actuelle = (n + photos.length) % photos.length;   // après la dernière, on revient à la première
     const ph = photos[actuelle];
     img.src = `photos/${P.slug}/${ph.fichier}`;
-    img.alt = ph.legende || "";
+    img.alt = altPhoto(P, ph.fichier, actuelle + 1).replace(/&quot;/g, "\"");
     $("loupe-legende").textContent = ph.legende || "";
     $("loupe-compteur").textContent = `${actuelle + 1} / ${photos.length}`;
     // On précharge la photo suivante pour qu'elle s'affiche sans attendre

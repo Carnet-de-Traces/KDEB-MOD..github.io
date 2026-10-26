@@ -24,15 +24,32 @@
 <meta name="description" content="Parcours à vélo et randonnées, à la journée ou sur plusieurs jours : carte, profil, points d'intérêt et GPX à télécharger.">
 
 <!-- Polices de caractères (Newsreader pour les titres, Barlow Condensed pour les étiquettes,
-     IBM Plex pour le texte et les chiffres), chargées depuis Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+     IBM Plex pour le texte et les chiffres), hébergées sur le site (assets/polices) -->
+<!-- Icône de l'onglet (favicon) et de l'écran d'accueil du téléphone -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#ffffff">
+<!-- Aperçu quand le lien est partagé (WhatsApp, Facebook, Instagram, Messages...) :
+     titre, texte et image (assets/partage.jpg, 1200 x 630 px). Les adresses doivent être complètes. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Carnet de traces">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Carnet de traces - parcours à vélo et à pied">
+<meta property="og:description" content="Parcours à vélo et randonnées, à la journée ou sur plusieurs jours : carte, profil, points d'intérêt et GPX à télécharger.">
+<meta property="og:url" content="https://carnet-de-traces.github.io/KDEB-MOD..github.io/">
+<meta property="og:image" content="https://carnet-de-traces.github.io/KDEB-MOD..github.io/assets/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Crête du Jura au-dessus du Pays de Gex">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/polices/polices.css?v=20261026a">
 <!-- Styles de la carte (Leaflet), puis les styles du site (couleurs, tailles...) -->
 <link rel="stylesheet" href="assets/leaflet/leaflet.css">
 <!-- VERSION DES FICHIERS : le "?v=..." force les navigateurs à recharger le style et les
      scripts après une mise à jour. Change ce numéro (ex. la date du jour) quand tu modifies
      style.css ou un fichier .js du dossier assets, ici ET dans l'autre page HTML. -->
-<link rel="stylesheet" href="assets/style.css?v=20261022a">
+<link rel="stylesheet" href="assets/style.css?v=20261026a">
 </head>
 <!-- "editorial" = style magazine de l'accueil (règles en fin de style.css) -->
 <body class="accueil editorial">
@@ -66,7 +83,7 @@
 
 <!-- Programmes de la page, dans cet ordre : carte (Leaflet), en-tête commun, accueil -->
 <script src="assets/leaflet/leaflet.js"></script>
-<script src="assets/entete.js?v=20261022a"></script>
-<script src="assets/accueil.js?v=20261022a"></script>
+<script src="assets/entete.js?v=20261026a"></script>
+<script src="assets/accueil.js?v=20261026a"></script>
 </body>
 </html>

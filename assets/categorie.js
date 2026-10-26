@@ -44,6 +44,7 @@ document.title = CAT.nom + " - " + NOM_DU_SITE;
 document.getElementById("etiquette").textContent = CAT.nom;
 document.getElementById("titre").innerHTML = CAT.titre || CAT.nom;
 document.getElementById("chapo").textContent = CAT.chapo || CAT.accroche || "";
+decrire(CAT.chapo || CAT.accroche);
 
 
 // ---------------------------------------------------------------------
@@ -167,7 +168,7 @@ function activer(zone, b) {
 // ---------------------------------------------------------------------
 function ficheCourte(p) {
   const visuel = p.photo_principale
-    ? `<img src="photos/${p.slug}/${p.photo_principale}" alt="" loading="lazy">`
+    ? `<img src="photos/${p.slug}/${p.photo_principale}" alt="${altPhoto(p, p.photo_principale)}" loading="lazy">`
     : silhouette(p.trace);
   const nbInc = (p.incontournables || []).length;
   return `<a class="fiche fiche-courte" data-trace="${p.slug}" href="parcours.html?p=${p.slug}">

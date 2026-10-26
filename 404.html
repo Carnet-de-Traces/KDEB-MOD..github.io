@@ -1,0 +1,44 @@
+<!doctype html>
+<!--
+=======================================================================
+ FICHIER : 404.html  =  PAGE « INTROUVABLE »
+ GitHub Pages l'affiche quand une adresse n'existe pas sur le site.
+ La ligne <base href=...> fait que les liens et le style marchent même
+ quand l'adresse demandée est dans un faux sous-dossier.
+=======================================================================
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/KDEB-MOD..github.io/">
+<title>Page introuvable - Carnet de traces</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/polices/polices.css?v=20261026a">
+<link rel="stylesheet" href="assets/style.css?v=20261026a">
+</head>
+<body class="accueil editorial page-404">
+
+<section class="hero hero-accueil">
+  <div class="fond" id="fond"></div>
+  <div class="contenu">
+    <div class="etiquettes-lieu"><span class="cat">Erreur 404</span></div>
+    <h1>Hors de la trace, <em>demi-tour.</em></h1>
+    <p class="chapeau">Cette page n'existe pas ou a changé d'adresse. Reprends le bon chemin :</p>
+    <div class="choix-404" id="choix"></div>
+  </div>
+</section>
+
+<script src="assets/entete.js?v=20261026a"></script>
+<script>
+  // Fond de courbes de niveau et liens vers l'accueil et les catégories
+  document.getElementById("fond").innerHTML = courbesDeNiveau();
+  document.getElementById("choix").innerHTML =
+    `<a class="btn" href="index.html">Accueil et grande carte</a>` +
+    CATEGORIES.map(c => `<a class="btn clair" href="${lienCategorie(c.id)}">${c.nom}</a>`).join("");
+</script>
+</body>
+</html>

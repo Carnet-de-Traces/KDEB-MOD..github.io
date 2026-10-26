@@ -1,0 +1,57 @@
+<!doctype html>
+<!--
+=======================================================================
+ FICHIER : mentions-legales.html  =  MENTIONS LÉGALES ET CONFIDENTIALITÉ
+ Texte modifiable directement ici. Lien en bas de toutes les pages
+ (PIED_DE_PAGE dans assets/entete.js).
+=======================================================================
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mentions légales et confidentialité - Carnet de traces</title>
+<meta name="description" content="Éditeur, hébergeur, données personnelles, crédits et conditions d'utilisation des traces du Carnet de traces.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/polices/polices.css?v=20261026a">
+<link rel="stylesheet" href="assets/style.css?v=20261026a">
+</head>
+<body class="accueil editorial page-texte">
+
+<section class="hero hero-accueil">
+  <div class="fond" id="fond"></div>
+  <div class="contenu">
+    <div class="etiquettes-lieu"><span class="cat">Informations</span></div>
+    <h1>Mentions légales <em>et confidentialité.</em></h1>
+  </div>
+</section>
+
+<main class="contenu texte-legal">
+
+  <h2>Éditeur</h2>
+  <p>Carnet de traces est un site personnel, édité à titre non professionnel, sans publicité ni activité commerciale.</p>
+  <p>Conformément à l'article 1-1 (II) de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, l'éditeur a choisi de ne pas publier son identité. Il l'a communiquée à l'hébergeur ci-dessous.</p>
+
+  <h2>Hébergeur</h2>
+  <p>GitHub, Inc. (service GitHub Pages)<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis<br><a href="https://pages.github.com/">pages.github.com</a></p>
+
+  <h2>Données personnelles et cookies</h2>
+  <p>Ce site ne collecte aucune donnée personnelle : pas de compte, pas de formulaire, pas d'outil de statistiques, pas de publicité. Il ne dépose aucun cookie et n'enregistre rien dans votre navigateur. Aucune bannière de consentement n'est donc nécessaire.</p>
+  <p>Les polices de caractères et la bibliothèque de cartes sont hébergées sur le site lui-même.</p>
+  <p>Pour afficher les cartes, votre navigateur télécharge des images (les « tuiles ») depuis les serveurs des fournisseurs de fonds de carte : Esri (ArcGIS Online), OpenStreetMap et OpenTopoMap. Comme pour toute page web, ces serveurs et celui de l'hébergeur reçoivent des données techniques de connexion (adresse IP, type de navigateur), selon leurs propres règles de confidentialité.</p>
+
+  <h2>Utilisation des traces</h2>
+  <p>Les itinéraires sont donnés à titre indicatif, tels que je les ai parcourus. Chemins, balisage, points d'eau, commerces et hébergements peuvent changer. Vérifiez la météo, l'état des chemins et les réglementations locales (réserves naturelles, bivouac) avant de partir. Chacun reste responsable de sa sortie et de sa sécurité.</p>
+  <p>Les traces GPX peuvent être téléchargées pour un usage personnel. Textes et photos : tous droits réservés.</p>
+
+  <h2>Crédits</h2>
+  <p>Fonds de carte © Esri, © contributeurs OpenStreetMap, © OpenTopoMap (CC-BY-SA). Points d'intérêt issus d'OpenStreetMap (licence ODbL). Cartes affichées avec Leaflet. Polices IBM Plex, Newsreader, Barlow Condensed et Caveat sous licence SIL Open Font License.</p>
+
+</main>
+
+<script src="assets/entete.js?v=20261026a"></script>
+<script>document.getElementById("fond").innerHTML = courbesDeNiveau();</script>
+</body>
+</html>

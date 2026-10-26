@@ -1,0 +1,23 @@
+/* =====================================================================
+   POLICES DU SITE, hébergées sur le site lui-même (et non chez Google) :
+   aucune donnée des visiteurs (adresse IP) n'est envoyée à un tiers pour
+   afficher le texte. Fichiers .woff2 de ce dossier, jeu de caractères
+   « latin » (accents français compris). Source : paquets @fontsource (npm),
+   polices sous licence SIL Open Font License.
+   ===================================================================== */
+
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("ibm-plex-sans-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("ibm-plex-sans-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 600; font-display: swap; src: url("ibm-plex-mono-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 600; font-display: swap; src: url("barlow-condensed-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-style: normal; font-weight: 700; font-display: swap; src: url("barlow-condensed-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Caveat"; font-style: normal; font-weight: 500; font-display: swap; src: url("caveat-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Caveat"; font-style: normal; font-weight: 600; font-display: swap; src: url("caveat-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 400; font-display: swap; src: url("newsreader-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 500; font-display: swap; src: url("newsreader-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: normal; font-weight: 600; font-display: swap; src: url("newsreader-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 400; font-display: swap; src: url("newsreader-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Newsreader"; font-style: italic; font-weight: 500; font-display: swap; src: url("newsreader-latin-500-italic.woff2") format("woff2"); }

@@ -148,7 +148,7 @@ function construireAccueil(parcours) {
     const dans = parcours.filter(p => p.categorie === c.id);
     const km = dans.reduce((t, p) => t + (p.distance_km || 0), 0);
     const choisi = dans.find(p => p.slug === c.photo && p.photo_principale) || dans.find(p => p.photo_principale);
-    const photo = choisi ? `<img src="photos/${choisi.slug}/${choisi.photo_principale}" alt="" loading="lazy">` : "";
+    const photo = choisi ? `<img src="photos/${choisi.slug}/${choisi.photo_principale}" alt="${altPhoto(choisi, choisi.photo_principale)}" loading="lazy">` : "";
     const activites = MENU.map(m => [m.nom, dans.filter(p => p.activite === m.id).length]).filter(([, n]) => n);
     return `<a class="porte" href="${lienCategorie(c.id)}">
       <div class="photo-porte">${photo}</div>
