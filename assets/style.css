@@ -531,3 +531,78 @@ body.courte .hero { min-height: 58vh; }                     /* fiche courte : ba
 .texte-legal { max-width: 760px; margin-left: auto; margin-right: auto; padding-top: 24px; }
 .texte-legal h2 { font-family: "Barlow Condensed", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .13em; text-transform: uppercase; margin: 40px 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--e-encre, #141414); }
 .texte-legal p { margin: 0 0 12px; color: var(--e-gris2, #3b3b3b); }
+
+
+
+/* =====================================================================
+   19. PAGE D'UN PARCOURS EN STYLE « ÉDITORIAL » (parcours.html)
+   Mêmes codes que l'accueil : fond blanc, filets noirs, titres à
+   empattements, étiquettes en capitales étroites, chiffres en mono.
+   La photo principale s'affiche en pleine largeur AU-DESSUS du titre
+   (le texte n'est plus posé sur la photo). Sans photo : courbes de niveau.
+   ===================================================================== */
+/* Bandeau : photo en haut, puis étiquettes, titre, résumé, bouton GPX */
+.editorial.page-parcours .hero { display: block; }
+.editorial.page-parcours .hero .fond:has(img) { position: relative; height: min(62vh, 600px); }
+.editorial.page-parcours .hero .fond:has(img) + .contenu { padding-top: 34px; }
+.editorial.page-parcours .hero .contenu { padding-bottom: 8px; }
+.editorial .etiquettes-lieu span + span::before { content: "· "; }
+.editorial .etiquettes-lieu { gap: 6px 8px; }
+.editorial .hero h1 { max-width: 20ch; }
+.editorial .hero .chapeau { max-width: 62ch; }
+.editorial .hero .chapeau a, .editorial .lien-carte { color: var(--e-encre); }
+.editorial .btn.btn-gpx { background: var(--e-accent); }
+.editorial .btn.btn-gpx:hover { background: var(--e-encre); }
+
+/* Barre de chiffres : entre deux filets noirs, sur fond blanc */
+.editorial .stats { background: #fff; color: var(--e-encre); margin-top: 26px; }
+.editorial .stats .contenu { border-top: 1px solid var(--e-encre); border-bottom: 1px solid var(--e-encre); padding-left: 0; padding-right: 0; max-width: 1128px; }
+.editorial .stat { border-left-color: var(--e-filet); padding: 16px 16px; }
+.editorial .stat:first-child { padding-left: 0; }
+.editorial .stat svg { stroke: var(--e-accent); }
+.editorial .stat span { color: var(--e-gris); font-family: "Barlow Condensed", sans-serif; font-size: 13px; letter-spacing: .13em; }
+.editorial .stat b { font-size: 20px; }
+@media (max-width: 1192px) { .editorial .stats .contenu { margin-left: 16px; margin-right: 16px; } }
+
+/* Titres de section : capitales étroites, filet noir */
+.editorial h2.section { font-family: "Barlow Condensed", sans-serif; font-size: 18px; font-weight: 700; letter-spacing: .13em; color: var(--e-encre); margin-top: 64px; }
+.editorial h2.section::after { background: var(--e-encre); }
+
+/* Carte, profil, téléchargements */
+.editorial .bloc-carte { background: #fff; border: 1px solid var(--e-encre); }
+.editorial .bloc-carte .filtres, .editorial .bloc-carte .note-poi, .editorial .profil, .editorial .telecharger { border-color: var(--e-filet); }
+.editorial .filtre { border-radius: 0; border-color: var(--e-encre); background: #fff; }
+.editorial .infobulle { background: #fff; }
+.editorial .btn, .editorial a.btn { background: var(--e-encre); color: #fff; }
+.editorial .btn:hover { background: var(--e-accent); }
+.editorial .btn.clair, .editorial a.btn.clair { background: #fff; color: var(--e-encre); border-color: var(--e-encre); }
+.editorial .btn.clair:hover { background: var(--e-encre); color: #fff; }
+
+/* L'essentiel : encarts sans cadre, filet noir épais en haut */
+.editorial .encart { background: #fff; border: 0; border-top: 3px solid var(--e-encre); padding: 14px 0 6px; }
+.editorial .encart h3 { font-family: "Barlow Condensed", sans-serif; font-size: 17px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.editorial .encart h3 svg { stroke: var(--e-accent); }
+.editorial .encarts { gap: 28px 32px; }
+.editorial .encart li, .editorial .encart p { color: var(--e-gris2); }
+
+/* Feuille de route et étapes */
+.editorial .feuille { background: #fff; border: 1px solid var(--e-encre); }
+.editorial .feuille th { background: var(--e-encre); font-family: "Barlow Condensed", sans-serif; font-size: 14px; letter-spacing: .1em; }
+.editorial .feuille td { border-top-color: var(--e-filet); }
+.editorial .feuille tbody tr:hover { background: #f5f5f5; }
+.editorial .etapes { background: #fff; border: 0; border-top: 1px solid var(--e-encre); border-bottom: 1px solid var(--e-encre); }
+.editorial .etapes th { font-family: "Barlow Condensed", sans-serif; font-size: 14px; letter-spacing: .1em; color: var(--e-gris); }
+.editorial .etapes th, .editorial .etapes td { border-top-color: var(--e-filet); }
+
+/* Galerie, carnet du jour, crédits, retour */
+.editorial .galerie { gap: 10px; }
+.editorial .galerie figcaption { color: var(--e-gris); }
+.editorial .page-carnet { border-color: #e5e0d4; }
+.editorial .credits { color: var(--e-gris); border-left-color: var(--e-accent); }
+.editorial .retour a { color: var(--e-encre); border-bottom-color: var(--e-accent); }
+.editorial .retour a::before { color: var(--e-accent); }
+
+@media (max-width: 700px) {
+  .editorial.page-parcours .hero .fond:has(img) { height: 46vh; }
+  .editorial .stat:first-child { padding-left: 0; }
+}
